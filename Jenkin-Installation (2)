@@ -1,0 +1,31 @@
+#Add Jenkins repository to your instance
+wget -O /etc/yum.repos.d/jenkins.repo     https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+#Import a key file from Jenkins-CI to enable package installation:
+rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+yum upgrade
+
+#Install Java before installing Jenkins
+amazon-linux-extras install java-openjdk11 -y
+
+#Install Jenkins
+yum install jenkins -y
+
+#Enable the Jenkins server
+systemctl enable jenkins
+
+#Start your Jenkins as a service
+systemctl start jenkins
+
+#Check the status of the Jenkins using the below command
+systemctl status jenkins
+
+#Configure Jenkins On Ec2
+
+{After Jenkins has been installed and is running on your EC2 instance, now it’s time to configure Jenkins.
+
+    Connect to http://<instance_public_ip>:8080 from your browser. You will be able to access Jenkins through Management Interface.
+    It will ask for the Administrator password. Use the below command to get the Jenkins password copy and paste it on somewhere else for future reference.}
+
+cat /var/lib/jenkins/secrets/initialAdminPassword
