@@ -1,7 +1,4 @@
 #!/bin/bash
-sudo apt update
-sudo apt install wget unzip -y
-
 sudo apt install default-jre -y
 
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
