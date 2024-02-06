@@ -1,0 +1,32 @@
+#create main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
+
+  required_version = ">= 1.2.0"
+}
+
+provider "aws" {
+  region = "us-east-2"
+}
+
+resource "aws_instance" "app_server" {
+  ami           = var.ami
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "SF terraform"
+  }
+}
+
+#create variable.tf
+
+variable "ami" {
+  type        = string
+  description = "The AMI ID to use for the EC2 instance"
+  default     = "ami-0866a04d72a1f5479"
+}
